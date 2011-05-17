@@ -5,6 +5,27 @@ function compress($buffer) {
     return $buffer;
 }
 ob_start('compress');
+
+/*
+$rssUrl = 'http://feeds.boston.com/boston/bigpicture/index';
+$rss = simplexml_load_file($rssUrl);
+var_dump($rss);
+ */
+
+$data = array(
+'img' => array(
+    'http://inapcache.boston.com/universal/site_graphics/blogs/bigpicture/libya_may_2011/bp1.jpg',
+    'http://inapcache.boston.com/universal/site_graphics/blogs/bigpicture/libya_may_2011/bp2.jpg',
+    'http://inapcache.boston.com/universal/site_graphics/blogs/bigpicture/libya_may_2011/bp3.jpg',
+    'http://inapcache.boston.com/universal/site_graphics/blogs/bigpicture/libya_may_2011/bp4.jpg',
+    'http://inapcache.boston.com/universal/site_graphics/blogs/bigpicture/libya_may_2011/bp5.jpg',
+    'http://inapcache.boston.com/universal/site_graphics/blogs/bigpicture/libya_may_2011/bp6.jpg'
+)
+);
+
+$imgWidth = 320;
+$imgHeight = 200;
+
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -36,6 +57,19 @@ if (true) {
 <body>
     <div id="demo">
     </div>
+<?php
+foreach($data['img'] as $imgUrl) {
+    $bucket = crc32($imgUrl) % 5;
+    $bucket = $bucket ? $bucket : '';
+?>
+<div>
+<img src="<?php echo 'http://src' . $bucket . '.sencha.io/' . $imgWidth . '/' . $imgUrl?>">
+</div>
+<?php
+}
+?>
+
+
 
 <?php
 if (!isset($_COOKIE['script_cache'])) {
