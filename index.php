@@ -38,13 +38,10 @@ if (true) {
     </div>
 
 <?php
-if (isset($_COOKIE['script_cache'])) {
+if (!isset($_COOKIE['script_cache'])) {
 ?>
     <script type="text/javascript" charset="utf-8" id="inline-script">
-        function clickHandler() {
-            alert('click');
-        }
-        document.getElementById('demo').addEventListener('click', clickHandler, false);
+<?php include('demo.js') ?>
     </script>
 
     <script type="text/javascript" charset="utf-8">
@@ -54,9 +51,8 @@ if (isset($_COOKIE['script_cache'])) {
 <?php
 } else {
 ?>
-    <script type="text/javascript" charset="utf-8">
-        var text = localStorage.getItem("<?php echo $_COOKIE['script_cache'];?>"); //TODO: fix XSS security hole
-        document.write('<scrip' + 't>' + text + '</scrip' + 't>');
+    <script type="text/javascript" charset="utf-8" id="inline-script">
+        eval(localStorage.getItem("<?php echo $_COOKIE['script_cache'];?>")); //TODO: fix XSS security hole
     </script>
 <?php
 }
