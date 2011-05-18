@@ -14,14 +14,12 @@ var_dump($rss);
 
 $data = array(
 'img' => array(
-    'http://inapcache.boston.com/universal/site_graphics/blogs/bigpicture/libya_may_2011/bp1.jpg',
-    'http://inapcache.boston.com/universal/site_graphics/blogs/bigpicture/libya_may_2011/bp2.jpg',
-    'http://inapcache.boston.com/universal/site_graphics/blogs/bigpicture/libya_may_2011/bp3.jpg',
-    'http://inapcache.boston.com/universal/site_graphics/blogs/bigpicture/libya_may_2011/bp4.jpg',
-    'http://inapcache.boston.com/universal/site_graphics/blogs/bigpicture/libya_may_2011/bp5.jpg',
-    'http://inapcache.boston.com/universal/site_graphics/blogs/bigpicture/libya_may_2011/bp6.jpg'
+
 )
 );
+for($i=1; $i<=36; $i++) {
+    array_push($data['img'], 'http://inapcache.boston.com/universal/site_graphics/blogs/bigpicture/libya_may_2011/bp' . $i . '.jpg');
+}
 
 $imgWidth = 320;
 $imgHeight = 200;
